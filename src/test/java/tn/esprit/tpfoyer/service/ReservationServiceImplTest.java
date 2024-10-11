@@ -1,22 +1,18 @@
 package tn.esprit.tpfoyer.service;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
 import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.repository.ReservationRepository;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class) // Enable Mockito for the test class
 class ReservationServiceImplTest {
 
     @Mock
@@ -24,6 +20,11 @@ class ReservationServiceImplTest {
 
     @InjectMocks
     private ReservationServiceImpl reservationService; // Inject the mock repository into the service
+
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this); // Initialize mocks
+    }
 
     @Test
     void testRetrieveAllReservations() {
@@ -57,6 +58,17 @@ class ReservationServiceImplTest {
 
         // Assert: Verify the result
         assertEquals("1234", reservation.getIdReservation());
+    }
+
+    @Test
+    void testRetrieveReservationNotFound() {
+        // Arrange: Mock repository to return empty for non-existing reservation
+        when(reservationRepository.findById("non-existing-id")).thenReturn(Optional.empty());
+
+        // Act & Assert: Check that an exception is thrown
+        assertThrows(NoSuchElementException.class, () -> {
+            reservationService.retrieveReservation("non-existing-id");
+        });
     }
 
     @Test
@@ -119,5 +131,13 @@ class ReservationServiceImplTest {
 
         // Assert: Verify that the repository's deleteById method was called
         verify(reservationRepository, times(1)).deleteById("1234");
+    }
+
+    @Test
+    void testAddReservationWithNull() {
+        // Act & Assert: Check that an exception is thrown when trying to add a null reservation
+        assertThrows(IllegalArgumentException.class, () -> {
+            reservationService.addReservation(null);
+        });
     }
 }
