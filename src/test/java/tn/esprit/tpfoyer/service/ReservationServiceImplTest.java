@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import tn.esprit.tpfoyer.entity.Reservation;
 import tn.esprit.tpfoyer.repository.ReservationRepository;
-import tn.esprit.tpfoyer.service.ReservationServiceImpl;
 
 import java.util.Collections;
 import java.util.Date;
@@ -18,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class) // Enable Mockito for the test class
-public class ReservationServiceImplTest {
+class ReservationServiceImplTest {
 
     @Mock
     private ReservationRepository reservationRepository; // Mock the repository
@@ -27,7 +26,7 @@ public class ReservationServiceImplTest {
     private ReservationServiceImpl reservationService; // Inject the mock repository into the service
 
     @Test
-    public void testRetrieveAllReservations() {
+    void testRetrieveAllReservations() {
         // Arrange: Create a mock reservation
         Reservation mockReservation = new Reservation();
         mockReservation.setIdReservation("1234");
@@ -45,7 +44,7 @@ public class ReservationServiceImplTest {
     }
 
     @Test
-    public void testRetrieveReservation() {
+    void testRetrieveReservation() {
         // Arrange: Create a mock reservation
         Reservation mockReservation = new Reservation();
         mockReservation.setIdReservation("1234");
@@ -61,7 +60,7 @@ public class ReservationServiceImplTest {
     }
 
     @Test
-    public void testAddReservation() {
+    void testAddReservation() {
         // Arrange: Create a mock reservation
         Reservation mockReservation = new Reservation();
         mockReservation.setIdReservation("1234");
@@ -77,7 +76,7 @@ public class ReservationServiceImplTest {
     }
 
     @Test
-    public void testModifyReservation() {
+    void testModifyReservation() {
         // Arrange: Create a mock reservation
         Reservation mockReservation = new Reservation();
         mockReservation.setIdReservation("1234");
@@ -93,7 +92,7 @@ public class ReservationServiceImplTest {
     }
 
     @Test
-    public void testTrouverResSelonDateEtStatus() {
+    void testTrouverResSelonDateEtStatus() {
         // Arrange: Create mock data
         Reservation mockReservation = new Reservation();
         mockReservation.setIdReservation("1234");
@@ -111,7 +110,7 @@ public class ReservationServiceImplTest {
     }
 
     @Test
-    public void testRemoveReservation() {
+    void testRemoveReservation() {
         // Arrange: Do nothing when deleteById is called
         doNothing().when(reservationRepository).deleteById("1234");
 
