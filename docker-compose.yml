@@ -33,7 +33,7 @@ services:
     tty: true
 
   react-app:
-    image: mohitk05/react-example
+    image: heroku/heroku-react
     ports:
       - 1000:1000
 
