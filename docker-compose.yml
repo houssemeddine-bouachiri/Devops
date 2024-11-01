@@ -33,7 +33,7 @@ services:
     tty: true
 
   react-app:
-    image: danilowoz/reactjs-boilerplate
+    image: okteto/example-react
     ports:
       - 1000:1000
 
