@@ -32,5 +32,13 @@ services:
     stdin_open: true
     tty: true
 
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 1000:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    restart: unless-stopped
+
 volumes:
   db:
