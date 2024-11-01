@@ -33,7 +33,7 @@ services:
     tty: true
 
   react-app:
-    image: heroku/heroku-react
+    image: danilowoz/reactjs-boilerplate
     ports:
       - 1000:1000
 
