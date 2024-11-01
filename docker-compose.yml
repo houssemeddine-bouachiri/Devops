@@ -35,7 +35,7 @@ services:
   react-app:
     image: okteto/example-react
     ports:
-      - 1000:1000
+      - 1000:3000
 
 volumes:
   db:
