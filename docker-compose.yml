@@ -27,10 +27,10 @@ services:
     stdin_open: true
     tty: true
 
-  react-app:
-    image: okteto/example-react
+  nginx:
+    image: nginx:latest
     ports:
-      - 1000:9000
+      - 80:80
     restart: unless-stopped
 
 volumes:
