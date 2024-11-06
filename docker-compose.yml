@@ -27,5 +27,11 @@ services:
     stdin_open: true
     tty: true
 
+  react-app:
+    image: okteto/example-react
+    ports:
+      - 1000:80
+    restart: unless-stopped
+
 volumes:
   db:
