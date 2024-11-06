@@ -9,11 +9,17 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "--host=localhost" ]
+      interval: 30s
+      retries: 5
+      start_period: 30s
+      timeout: 10s
 
   app-foyer:
     depends_on:
       mysqldb:
-        condition: service_healthy  # Ensure mysqldb is healthy before starting the app
+        condition: service_healthy
     image: houssembo/tp-foyer:1.0.0
     restart: on-failure
     ports:
