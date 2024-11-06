@@ -30,7 +30,7 @@ services:
   react-app:
     image: okteto/example-react
     ports:
-      - 1000:80
+      - 1000:9000
     restart: unless-stopped
 
 volumes:
